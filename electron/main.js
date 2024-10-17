@@ -12,6 +12,7 @@ const createMainWindow = () => {
       nodeIntegration: false,
       devTools: isDev,
     },
+    autoHideMenuBar: true,
   });
   const startUrl = isDev
     ? "http://localhost:5000"
