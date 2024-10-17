@@ -1,21 +1,21 @@
-import { app, BrowserWindow, screen as electronScreen } from "electron";
-import { fileURLToPath } from "url";
-import path from "path";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const { app, BrowserWindow, screen: electronScreen } = require("electron");
+const path = require("path");
+const isDev = require("electron-is-dev");
 
 const createMainWindow = () => {
   let mainWindow = new BrowserWindow({
     width: electronScreen.getPrimaryDisplay().workArea.width,
     height: electronScreen.getPrimaryDisplay().workArea.height,
     show: false,
+    backgroundColor: "black",
     webPreferences: {
-      nodeIntegration: true,
-      contextIsolation: false,
+      nodeIntegration: false,
+      devTools: isDev,
     },
   });
-  const startUrl = `file://${path.join(__dirname, "../dist/index.html")}`;
+  const startUrl = isDev
+    ? "http://localhost:5000"
+    : `file://${path.join(__dirname, "../build/index.html")}`;
 
   mainWindow.loadURL(startUrl);
 
