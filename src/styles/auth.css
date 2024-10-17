@@ -1,66 +1,66 @@
 .container {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 100vw;
-	height: 100vh;
-	margin: 0;
-	padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 .form {
-	padding: 50px;
-	border-radius: 25px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	text-align: center;
-	background-color: black;
+  padding: 50px;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  background-color: black;
 }
 
 form {
-	display: flex;
-	flex-direction: column;
-	border-radius: 12px;
-	padding: 10px;
-	gap: 10px;
-	margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  padding: 10px;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 .form-field {
-	display: flex;
-	flex-direction: column;
-	position: relative;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
 
-	img {
-		width: 25px;
-		height: 25px;
-		filter: invert();
-		position: absolute;
-		right: 5px;
-		bottom: 5px;
-		cursor: pointer;
-	}
+img {
+  width: 25px;
+  height: 25px;
+  filter: invert();
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  cursor: pointer;
 }
 
 .form-field.row {
-	flex-direction: row;
-	align-items: center;
-	justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .rememberMe {
-	display: flex;
-	align-items: center;
-	pointer-events: all;
+  display: flex;
+  align-items: center;
+  pointer-events: all;
 }
 
 .form-field label {
-	text-align: left;
-	padding: 10px;
-	padding-left: 0px;
+  text-align: left;
+  padding: 10px;
+  padding-left: 0px;
 }
 
 .form-field input {
-	height: 36px;
+  height: 36px;
 }
