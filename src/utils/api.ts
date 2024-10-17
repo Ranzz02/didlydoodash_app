@@ -24,7 +24,7 @@ const ErrorResponse = async (error: AxiosError<any>): Promise<any> => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (error.config.headers as any)._retry = true;
     try {
-      const response = await axios.get(`/auth/refresh`, {
+      const response = await axios.get(`${BASE_URL}/auth/refresh`, {
         headers: { Authorization: `Bearer ${tokens?.refresh}` },
       });
       // Update the stored access token with the new one

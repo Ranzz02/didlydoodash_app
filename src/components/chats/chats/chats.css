@@ -1,159 +1,159 @@
 .chat {
-    flex: 2 auto;
-    border-left: 1px solid #dddddd35;
-    display: flex;
-    flex-direction: column;
+  flex: 2 auto;
+  border-left: 1px solid #dddddd35;
+  display: flex;
+  flex-direction: column;
+}
 
-    .top {
-        padding: 10px 20px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: space-between;
-        border-bottom: 1px solid #dddddd35;
+.chat .top {
+  padding: 10px 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #dddddd35;
+}
 
-        .user {
-            display: flex;
-            align-items: center;
-            gap: 20px;
+.chat .top .user {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
 
-            img {
-                width: 60px;
-                height: 60px;
-                border-radius: 50%;
-                object-fit: cover;
-            }
+.chat .top .user img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
 
-            .texts {
-                display: flex;
-                flex-direction: column;
-                gap: 5px;
+.chat .top .user .texts {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
 
-                h2 {
-                    margin: 0;
-                    padding: 0;
-                }
+.chat .top .user .texts h2 {
+  margin: 0;
+  padding: 0;
+}
 
-                span {
-                    font-size: 18px;
-                    font-weight: bold;
-                    position: relative;
-                }
+.chat .top .user .texts span {
+  font-size: 18px;
+  font-weight: bold;
+  position: relative;
+}
 
-                span:hover {
-                    cursor: pointer;
-                    color: rgb(141, 18, 18);
-                }
+.chat .top .user .texts span:hover {
+  cursor: pointer;
+  color: rgb(141, 18, 18);
+}
 
-                span:hover::before {
-                    width: 100%;
-                    content: "🗑️";
-                    text-align: center;
-                    position: absolute;
-                }
+.chat .top .user .texts span:hover::before {
+  width: 100%;
+  content: "🗑️";
+  text-align: center;
+  position: absolute;
+}
 
-                p {
-                    margin: 0;
-                    font-size: 14px;
-                    font-weight: 300;
-                    color: #a5a5a5;
-                    cursor: default;
-                }
-            }
-        }
+.chat .top .user .texts p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 300;
+  color: #a5a5a5;
+  cursor: default;
+}
 
-        .icons {
-            display: flex;
-            gap: 20px;
+.chat .top .icons {
+  display: flex;
+  gap: 20px;
+}
 
-            img {
-                width: 30px;
-                height: 30px;
-                cursor: pointer;
-            }
-        }
-    }
+.chat .top .icons img {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
 
-    .center {
-        flex: 1;
-        overflow-y: auto;
-        padding: 10px 15px;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
+.chat .center {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 
-        .loader {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 10px 0px;
-        }
+.chat .center .loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0px;
+}
 
-        #bottom {
-            height: 0;
-            margin: 0;
-            padding: 0;
-        }
-    }
+.chat .center #bottom {
+  height: 0;
+  margin: 0;
+  padding: 0;
+}
 
-    .center::-webkit-scrollbar {
-        width: 15px;
-    }
+.chat .center::-webkit-scrollbar {
+  width: 15px;
+}
 
-    .center::-webkit-scrollbar-thumb {
-        background: #272b33;
-        border-radius: 10px;
-    }
+.chat .center::-webkit-scrollbar-thumb {
+  background: #272b33;
+  border-radius: 10px;
+}
 
-    .bottom {
-        margin: 0;
-        padding: 10px 20px;
-        display: flex;
-        flex-flow: row;
-        align-items: center;
-        justify-content: space-between;
-        border-top: 1px solid #dddddd35;
-        gap: 20px;
+.chat .bottom {
+  margin: 0;
+  padding: 10px 20px;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #dddddd35;
+  gap: 20px;
+}
 
-        .icons {
-            display: flex;
-            gap: 20px;
-        }
+.chat .bottom .icons {
+  display: flex;
+  gap: 20px;
+}
 
-        img {
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-            background-color: azure;
-            border-radius: 25px;
-        }
+.chat .bottom img {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  background-color: azure;
+  border-radius: 25px;
+}
 
-        input {
-            flex: 1;
-            background-color: rgba(17, 25, 40, 0.5);
-            border: none;
-            outline: none;
-            color: white;
-            padding: 15px;
-            border-radius: 10px;
-            font-size: 16px;
+.chat .bottom input {
+  flex: 1;
+  background-color: rgba(17, 25, 40, 0.5);
+  border: none;
+  outline: none;
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 16px;
+}
 
-            &:disabled {
-                cursor: not-allowed;
-            }
-        }
+.chat .bottom input:disabled {
+  cursor: not-allowed;
+}
 
-        .sendButton {
-            background-color: #5183fe;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+.chat .bottom .sendButton {
+  background-color: #5183fe;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
-            &:disabled {
-                background-color: #5182feb4;
-                cursor: not-allowed;
-            }
-        }
-    }
+.chat .bottom .sendButton:disabled {
+  background-color: #5182feb4;
+  cursor: not-allowed;
 }

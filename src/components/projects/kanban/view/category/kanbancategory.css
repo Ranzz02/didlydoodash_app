@@ -1,72 +1,72 @@
 :root {
-    --width: 280px;
+  --width: 280px;
 }
 
 .kanban-category-container {
-    min-width: var(--width);
-    max-width: var(--width);
-    display: flex;
-    flex-flow: column;
-    flex: 1;
-    flex-grow: 1;
+  min-width: var(--width);
+  max-width: var(--width);
+  display: flex;
+  flex-flow: column;
+  flex: 1;
+  flex-grow: 1;
+}
 
-    .category-header {
-        height: 50px;
-        display: flex;
-        flex-flow: row;
-        align-items: center;
-        justify-content: space-between;
-        border-color: white;
-        border-width: 0;
-        border-bottom-width: 2px;
-        border-style: solid;
+.kanban-category-container .category-header {
+  height: 50px;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: space-between;
+  border-color: white;
+  border-width: 0;
+  border-bottom-width: 2px;
+  border-style: solid;
+}
 
-        input {
-            flex: 1;
-            width: 0;
-            font-size: 1.2rem;
-            padding: 5px;
-            margin: 0;
-            border: none;
-        }
+.kanban-category-container .category-header input {
+  flex: 1;
+  width: 0;
+  font-size: 1.2rem;
+  padding: 5px;
+  margin: 0;
+  border: none;
+}
 
-        .actions {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-        }
-    }
+.kanban-category-container .category-header .actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
 
-    .content {
-        flex: 1;
-        position: relative;
+.kanban-category-container .content {
+  flex: 1;
+  position: relative;
+}
 
-        .absolute {
-            position: absolute;
-            padding: 10px 0px;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            display: flex;
-            flex-flow: column;
-            overflow: hidden;
-            overflow-y: auto;
-        }
+.kanban-category-container .content .absolute {
+  position: absolute;
+  padding: 10px 0px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-flow: column;
+  overflow: hidden;
+  overflow-y: auto;
+}
 
-        .absolute::-webkit-scrollbar {
-            width: 20px;
-            margin-right: 3px;
-        }
+.kanban-category-container .content .absolute::-webkit-scrollbar {
+  width: 20px;
+  margin-right: 3px;
+}
 
-        .absolute::-webkit-scrollbar-thumb {
-            background: white;
-            border-radius: 10px;
-            border-style: solid;
-            border-color: transparent;
-            border-width: 4px;
-            background-clip: padding-box;
-        }
-    }
+.kanban-category-container .content .absolute::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: transparent;
+  border-width: 4px;
+  background-clip: padding-box;
 }
