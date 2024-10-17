@@ -1,0 +1,12 @@
+{
+  "appId": "com.didlydoodash.webb",
+  "productName": "DidlyDooDash",
+  "directories": {
+    "buildResources": "build"
+  },
+  "files": ["dist/**/*", "electron/**/*"],
+  "win": {
+    "target": "nsis",
+    "icon": "build/icon.ico"
+  }
+}
