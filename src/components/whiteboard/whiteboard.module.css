@@ -2,7 +2,25 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  overflow: hidden;
 }
+
+.whiteboard_Draw_Area {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+}
+
+.whiteboard_Draw_Canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+}
+
 .whiteboard_PageTitle {
   margin-top: 4px;
   margin-bottom: 4px;

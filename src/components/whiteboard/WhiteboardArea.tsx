@@ -1,10 +1,11 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Stage, Layer, Line, Rect, Arrow, Circle, Text } from "react-konva";
 import { KonvaEventObject } from "konva/lib/Node";
 import styles from "./whiteboard.module.css";
 import { useParams } from "react-router-dom";
 import useWebSocket from "react-use-websocket";
 import { useWhiteboards } from "@/stores/whiteboards";
+import { Widgets } from "@mui/icons-material";
 
 interface LineData {
   points: number[];
@@ -28,6 +29,28 @@ const Whiteboard: React.FC<WhiteboardProps> = ({ websocketUrl }) => {
   const startPointRef = useRef<{ x: number; y: number } | null>(null);
   const { whiteboardID } = useParams();
   const { whiteboards } = useWhiteboards();
+  const stageRef = useRef<HTMLDivElement>(null);
+
+  const [stageSize, setStageSize] = useState<{ width: number; height: number }>(
+    {
+      width: window.innerWidth,
+      height: window.innerHeight,
+    }
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      setStageSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   if (!whiteboardID) {
     console.error("No whiteboard ID found in URL");
   }
@@ -313,20 +336,22 @@ const Whiteboard: React.FC<WhiteboardProps> = ({ websocketUrl }) => {
         )}
       </div>
 
-      <Stage
-        className={styles.whiteboard_Draw_Area}
-        height={window.innerHeight - 138}
-        width={window.innerWidth - 100}
-        style={{
-          border: "1px solid white",
-          backgroundColor: "#181618",
-        }}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-      >
-        <Layer>{lines.map((line, i) => renderShape(line, i))}</Layer>
-      </Stage>
+      <div className={styles.whiteboard_Draw_Area}>
+        <Stage
+          className={styles.whiteboard_Draw_Canvas}
+          width={stageSize.width}
+          height={stageSize.height}
+          style={{
+            border: "1px solid white",
+            backgroundColor: "#181618",
+          }}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+        >
+          <Layer>{lines.map((line, i) => renderShape(line, i))}</Layer>
+        </Stage>
+      </div>
     </div>
   );
 };

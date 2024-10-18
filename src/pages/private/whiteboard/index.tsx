@@ -29,15 +29,17 @@ export default function WhiteboardPage() {
 // Simple styles for the canvas
 const styles: { canvas: React.CSSProperties; mainArea: React.CSSProperties } = {
   canvas: {
-    position: "relative",
+    position: "absolute",
+    left: 0,
+    top: 0,
+    right: 0,
+    bottom: 0,
     display: "flex",
-    flexGrow: "1",
-    justifyContent: "center",
-    alignItems: "center",
   },
   mainArea: {
     display: "flex",
     flexGrow: "1",
     flexDirection: "column",
+    position: "relative",
   },
 };
