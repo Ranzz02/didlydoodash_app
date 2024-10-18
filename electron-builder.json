@@ -1,14 +1,10 @@
 {
-  "appId": "YourAppID",
+  "appId": "com.didlydoodash.app",
   "asar": true,
   "directories": {
     "output": "release/${version}"
   },
   "files": ["dist-electron", "dist"],
-  "mac": {
-    "artifactName": "${productName}_${version}.${ext}",
-    "target": ["dmg", "zip"]
-  },
   "win": {
     "target": [
       {
@@ -22,11 +18,16 @@
     "oneClick": false,
     "perMachine": false,
     "allowToChangeInstallationDirectory": true,
-    "deleteAppDataOnUninstall": false
+    "deleteAppDataOnUninstall": false,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "shortcutName": "DidlyDooDash"
   },
   "publish": {
-    "provider": "generic",
-    "channel": "latest",
-    "url": "https://github.com/electron-vite/electron-vite-react/releases/download/v0.9.9/"
+    "provider": "github",
+    "owner": "Ranzz02",
+    "repo": "didlydoodash_app",
+    "releaseType": "release",
+    "channel": "latest"
   }
 }

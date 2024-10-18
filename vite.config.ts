@@ -14,6 +14,8 @@ export default defineConfig(({ command }: ConfigEnv): UserConfig => {
   const sourcemap = isServe || !!process.env.VSCODE_DEBUG;
 
   return {
+    base: "./",
+    publicDir: "public",
     resolve: {
       alias: {
         "@": path.join(__dirname, "src"),
@@ -39,23 +41,6 @@ export default defineConfig(({ command }: ConfigEnv): UserConfig => {
               sourcemap,
               minify: isBuild,
               outDir: "dist-electron/main",
-              rollupOptions: {
-                external: Object.keys(
-                  "dependencies" in pkg ? pkg.dependencies : {}
-                ),
-              },
-            },
-          },
-        },
-        preload: {
-          // Shortcut of `build.rollupOptions.input`.
-          // Preload scripts may contain Web assets, so use the `build.rollupOptions.input` instead `build.lib.entry`.
-          input: "electron/preload/index.ts",
-          vite: {
-            build: {
-              sourcemap: sourcemap ? "inline" : undefined, // #332
-              minify: isBuild,
-              outDir: "dist-electron/preload",
               rollupOptions: {
                 external: Object.keys(
                   "dependencies" in pkg ? pkg.dependencies : {}

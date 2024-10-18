@@ -1,5 +1,7 @@
 /// <reference types="vite-electron-plugin/electron-env" />
 
+import { IpcRenderer } from "electron";
+
 declare namespace NodeJS {
   interface ProcessEnv {
     VSCODE_DEBUG?: "true";
@@ -19,5 +21,8 @@ declare namespace NodeJS {
     APP_ROOT: string;
     /** /dist/ or /public/ */
     VITE_PUBLIC: string;
+  }
+  interface window {
+    ipcRenderer: IpcRenderer;
   }
 }

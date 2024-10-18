@@ -85,7 +85,11 @@ export default function SignupPage() {
               onChange={handleInput}
             />
             <img
-              src={passwordShown ? "/icons/hide.svg" : "/icons/show.svg"}
+              src={
+                passwordShown
+                  ? `${import.meta.env.BASE_URL}icons/hide.svg`
+                  : `${import.meta.env.BASE_URL}icons/show.svg`
+              }
               onClick={() => setPasswordShown(!passwordShown)}
             />
           </div>

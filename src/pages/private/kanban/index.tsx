@@ -184,7 +184,11 @@ export default function KanbanView() {
             onChange={handleChange}
           />
         </div>
-        <img className="archive" src="/icons/more.svg" onClick={toggleOpen} />
+        <img
+          className="archive"
+          src={`${import.meta.env.BASE_URL}icons/more.svg`}
+          onClick={toggleOpen}
+        />
       </div>
       <div className="categories">
         <div className="absolute">

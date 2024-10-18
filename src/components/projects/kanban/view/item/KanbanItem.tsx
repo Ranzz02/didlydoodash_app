@@ -68,7 +68,7 @@ function KanbanItemComponent(props: KanbanItemProps) {
         <div className="kanban-item-header">
           <div className="kanban-item-actions">
             <div ref={drag} className={"kanban-item-handle"}>
-              <img src="/icons/grab.svg" />
+              <img src={`${import.meta.env.BASE_URL}icons/grab.svg`} />
             </div>
             <RemoveItem item={item} sendMessage={sendMessage} />
           </div>

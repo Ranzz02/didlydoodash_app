@@ -141,7 +141,13 @@ export default function Chats() {
     <div className="chat">
       <div className="top">
         <div className="user">
-          <img src={user?.avatar || "/icons/avatars/avatar-girl2.svg"} alt="" />
+          <img
+            src={
+              user?.avatar ||
+              `${import.meta.env.BASE_URL}icons/avatars/avatar-girl2.svg`
+            }
+            alt=""
+          />
           <div className="texts">
             <h2>{openChat?.name}</h2>
             <p style={{ display: "flex", gap: "15px", alignItems: "center" }}>
@@ -159,10 +165,18 @@ export default function Chats() {
         </div>
         <div className="icons">
           <Tooltip title="Add user to chat" placement="top-start">
-            <img src="/icons/plus.svg" alt="" onClick={handleAddUser} />
+            <img
+              src={`${import.meta.env.BASE_URL}icons/plus.svg`}
+              alt=""
+              onClick={handleAddUser}
+            />
           </Tooltip>
           <Tooltip title="Close chat" placement="top-start">
-            <img src="/icons/close.svg" alt="" onClick={handleCloseChat} />
+            <img
+              src={`${import.meta.env.BASE_URL}icons/close.svg`}
+              alt=""
+              onClick={handleCloseChat}
+            />
           </Tooltip>
           <AddUser open={openAddUser} setOpen={setOpenAddUser} />
         </div>
