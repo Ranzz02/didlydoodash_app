@@ -1,18 +1,18 @@
 .org-container {
-    display: flex;
-    flex-flow: column;
-    margin: auto;
+  display: flex;
+  flex-flow: column;
+  margin: auto;
+}
 
-    h2 {
-        margin: 15px 0px;
-    }
+.org-container h2 {
+  margin: 15px 0px;
 }
 
 .org-create-form {
-    gap: 20px;
+  gap: 20px;
+}
 
-    span {
-        font-size: 18px;
-        font-weight: 500;
-    }
+.org-create-form span {
+  font-size: 18px;
+  font-weight: 500;
 }

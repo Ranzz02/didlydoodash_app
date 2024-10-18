@@ -1,54 +1,54 @@
 .kanban-item-container {
-    padding: 10px;
-    width: 100%;
-    background-color: rgb(12, 27, 32);
-    border-style: solid;
-    border-color: white;
-    border-width: 4px;
-    border-radius: 12px;
-    cursor: pointer;
+  padding: 10px;
+  width: 100%;
+  background-color: rgb(12, 27, 32);
+  border-style: solid;
+  border-color: white;
+  border-width: 4px;
+  border-radius: 12px;
+  cursor: pointer;
+}
 
-    h2 {
-        margin: 0;
-    }
+.kanban-item-container h2 {
+  margin: 0;
+}
 
-    .kanban-status {
-        display: flex;
-        gap: 12px;
+.kanban-item-container .kanban-status {
+  display: flex;
+  gap: 12px;
+}
 
-        .texts {
-            display: flex;
-            align-items: center;
-            gap: 6px;
+.kanban-item-container .kanban-status .texts {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
 
-            span {
-                padding: 4px 0px;
-            }
+.kanban-item-container .kanban-status .texts span {
+  padding: 4px 0px;
+}
 
-            .status {
-                border-radius: 8px;
-                padding: 4px;
-            }
+.kanban-item-container .kanban-status .texts .status {
+  border-radius: 8px;
+  padding: 4px;
+}
 
-            .planning {
-                background-color: rgb(255, 102, 0);
-            }
+.kanban-item-container .kanban-status .texts .planning {
+  background-color: rgb(255, 102, 0);
+}
 
-            .in.progress {
-                background-color: rgb(184, 158, 12);
-            }
+.kanban-item-container .kanban-status .texts .in\.progress {
+  background-color: rgb(184, 158, 12);
+}
 
-            .done {
-                background-color: rgb(7, 117, 75);
-            }
+.kanban-item-container .kanban-status .texts .done {
+  background-color: rgb(7, 117, 75);
+}
 
-            .archived {
-                background-color: rgb(94, 4, 4);
-            }
+.kanban-item-container .kanban-status .texts .archived {
+  background-color: rgb(94, 4, 4);
+}
 
-            p {
-                margin: 0;
-            }
-        }
-    }
+.kanban-item-container .kanban-status .texts p {
+  margin: 0;
 }

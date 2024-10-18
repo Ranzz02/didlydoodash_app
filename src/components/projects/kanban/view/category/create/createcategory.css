@@ -2,8 +2,14 @@
   --c-a-icon: 35px;
 }
 
+.add-category {
+  flex: 1;
+  padding: 10px;
+  min-width: 280px;
+  max-width: 280px;
+}
+
 .add-category-texts {
-  width: 280px;
   flex: 1;
   display: flex;
   align-items: center;

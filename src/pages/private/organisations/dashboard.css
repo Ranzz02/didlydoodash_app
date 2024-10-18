@@ -1,64 +1,64 @@
 :root {
-    --c-danger-text: red;
-    --c-danger-btn-bg: rgb(46, 28, 28);
+  --c-danger-text: red;
+  --c-danger-btn-bg: rgb(46, 28, 28);
 }
 
 .dashboard-container {
-    display: flex;
-    flex-direction: column;
-    margin: auto;
-    gap: 20px;
-
-    .texts {
-        h1 {
-            margin: 10px 0px;
-        }
-
-        h2 {
-            margin: 0;
-        }
-
-        span {
-            margin: 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-    }
-
-    .danger {
-        display: flex;
-        flex-direction: column;
-
-        h2 {
-            margin: 0;
-        }
-
-        .texts {
-            display: flex;
-            flex-direction: column;
-            color: var(--c-danger-text);
-            gap: 10px;
-
-            button {
-                background-color: var(--c-danger-btn-bg);
-                color: var(--c-danger-text);
-            }
-        }
-    }
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  gap: 20px;
 }
+
+.dashboard-container .texts h1 {
+  margin: 10px 0px;
+}
+
+.dashboard-container .texts h2 {
+  margin: 0;
+}
+
+.dashboard-container .texts span {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dashboard-container .danger {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-container .danger h2 {
+  margin: 0;
+}
+
+.dashboard-container .danger .texts {
+  display: flex;
+  flex-direction: column;
+  color: var(--c-danger-text);
+  gap: 10px;
+}
+
+.dashboard-container .danger .texts button {
+  background-color: var(--c-danger-btn-bg);
+  color: var(--c-danger-text);
+}
+
 .announcement_header {
-    display: flex;
-    flex-direction: row;
-    
+  display: flex;
+  flex-direction: row;
 }
+
 .new_announcement_btn {
-    margin-left: 20px;
+  margin-left: 20px;
 }
+
 .announcement_Text_Input {
-    width: 100%;
-    height: 90px;
-    font-size: 14px;
-    resize: vertical;
-    border: solid 1px white;
+  width: 100%;
+  height: 90px;
+  font-size: 14px;
+  resize: vertical;
+  border: solid 1px white;
 }
