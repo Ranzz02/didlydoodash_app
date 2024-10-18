@@ -32,6 +32,7 @@
   margin: 0;
   border-radius: 6px;
   border: none;
+  background-color: transparent;
 }
 
 .kanban-category-container .category-header .actions {

@@ -57,3 +57,17 @@
   overflow-y: hidden;
   overflow-x: auto;
 }
+
+.kanban-view .categories .absolute::-webkit-scrollbar {
+  width: 20px;
+  margin-right: 3px;
+}
+
+.kanban-view .categories .absolute::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: transparent;
+  border-width: 4px;
+  background-clip: padding-box;
+}

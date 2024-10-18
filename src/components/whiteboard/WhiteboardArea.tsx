@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Stage, Layer, Line, Rect, Arrow, Circle, Text } from "react-konva";
 import { KonvaEventObject } from "konva/lib/Node";
-import styles from "./whiteboard.module.css"
+import styles from "./whiteboard.module.css";
 import { useParams } from "react-router-dom";
 import useWebSocket from "react-use-websocket";
 import { useWhiteboards } from "@/stores/whiteboards";
@@ -26,24 +26,28 @@ const Whiteboard: React.FC<WhiteboardProps> = ({ websocketUrl }) => {
   const [textInput, setTextInput] = useState<string>("");
   const isDrawing = useRef(false);
   const startPointRef = useRef<{ x: number; y: number } | null>(null);
-  const {whiteboardID}=useParams()
-  const {whiteboards}=useWhiteboards()
+  const { whiteboardID } = useParams();
+  const { whiteboards } = useWhiteboards();
   if (!whiteboardID) {
     console.error("No whiteboard ID found in URL");
   }
-  const{sendMessage, readyState}=useWebSocket(websocketUrl,{onOpen:()=>{
-    console.log("WebSocket connected");
-    console.log("Connecting to WebSocket at:", websocketUrl);}, 
-    onClose:()=>{
-      console.log(`WebSocket closed}`); 
-    },retryOnError:true, 
-    onMessage:(event)=>{
+  const { sendMessage, readyState } = useWebSocket(websocketUrl, {
+    onOpen: () => {
+      console.log("WebSocket connected");
+      console.log("Connecting to WebSocket at:", websocketUrl);
+    },
+    onClose: () => {
+      console.log(`WebSocket closed}`);
+    },
+    retryOnError: true,
+    onMessage: (event) => {
       console.log("Message received:", event.data);
       const message = JSON.parse(event.data);
       const payload = message.payload;
       setLines((prevLines) => [...prevLines, payload]);
-    }})
-  
+    },
+  });
+
   const handleMouseDown = (e: KonvaEventObject<MouseEvent>) => {
     isDrawing.current = true;
     const stage = e.target.getStage();
@@ -135,7 +139,9 @@ const Whiteboard: React.FC<WhiteboardProps> = ({ websocketUrl }) => {
       const lastLine = lines[lines.length - 1];
       console.log("Sending data:", JSON.stringify(lastLine));
       if (readyState == WebSocket.OPEN) {
-        sendMessage(JSON.stringify({roomId: whiteboardID,payload: lastLine} ));
+        sendMessage(
+          JSON.stringify({ roomId: whiteboardID, payload: lastLine })
+        );
       } else {
         console.error("WebSocket is not open, cannot send message");
       }
@@ -197,7 +203,7 @@ const Whiteboard: React.FC<WhiteboardProps> = ({ websocketUrl }) => {
           />
         );
       case "triangle":
-        const trianglePoints = [x1, y2, x2, y2, (x1 + x2) / 2, y1]; 
+        const trianglePoints = [x1, y2, x2, y2, (x1 + x2) / 2, y1];
         return (
           <Line
             key={i}
@@ -225,16 +231,49 @@ const Whiteboard: React.FC<WhiteboardProps> = ({ websocketUrl }) => {
 
   return (
     <div className={styles.whiteboard_container}>
-      <h1 className={styles.whiteboard_PageTitle}>{whiteboards?.find((whiteboard)=> whiteboard.id == whiteboardID)?.name} Whiteboard</h1>
+      <h1 className={styles.whiteboard_PageTitle}>
+        {whiteboards?.find((whiteboard) => whiteboard.id == whiteboardID)?.name}{" "}
+        Whiteboard
+      </h1>
 
       {/* ToolBar */}
       <div className={styles.whiteboard_toolbar}>
-        <button className={styles.whiteboard_Toolbar_Button} onClick={() => setTool("line")}>Line</button>
-        <button className={styles.whiteboard_Toolbar_Button} onClick={() => setTool("square")}>Square</button>
-        <button className={styles.whiteboard_Toolbar_Button} onClick={() => setTool("triangle")}>Triangle</button>
-        <button className={styles.whiteboard_Toolbar_Button} onClick={() => setTool("circle")}>Circle</button>
-        <button className={styles.whiteboard_Toolbar_Button} onClick={() => setTool("arrow")}>Arrow</button>
-        <button className={styles.whiteboard_Toolbar_Button} onClick={() => setTool("eraser")}>Eraser</button>
+        <button
+          className={styles.whiteboard_Toolbar_Button}
+          onClick={() => setTool("line")}
+        >
+          Line
+        </button>
+        <button
+          className={styles.whiteboard_Toolbar_Button}
+          onClick={() => setTool("square")}
+        >
+          Square
+        </button>
+        <button
+          className={styles.whiteboard_Toolbar_Button}
+          onClick={() => setTool("triangle")}
+        >
+          Triangle
+        </button>
+        <button
+          className={styles.whiteboard_Toolbar_Button}
+          onClick={() => setTool("circle")}
+        >
+          Circle
+        </button>
+        <button
+          className={styles.whiteboard_Toolbar_Button}
+          onClick={() => setTool("arrow")}
+        >
+          Arrow
+        </button>
+        <button
+          className={styles.whiteboard_Toolbar_Button}
+          onClick={() => setTool("eraser")}
+        >
+          Eraser
+        </button>
         <input
           type="color"
           value={strokeColor}
@@ -257,7 +296,12 @@ const Whiteboard: React.FC<WhiteboardProps> = ({ websocketUrl }) => {
           <option value={25}>25</option>
           <option value={50}>50</option>
         </select>
-        <button className={styles.whiteboard_Toolbar_Button} onClick={() => setTool("text")}>Text</button>
+        <button
+          className={styles.whiteboard_Toolbar_Button}
+          onClick={() => setTool("text")}
+        >
+          Text
+        </button>
         {tool === "text" && (
           <input
             type="text"
@@ -271,11 +315,11 @@ const Whiteboard: React.FC<WhiteboardProps> = ({ websocketUrl }) => {
 
       <Stage
         className={styles.whiteboard_Draw_Area}
-        height={window.innerHeight -138}
+        height={window.innerHeight - 138}
         width={window.innerWidth - 100}
         style={{
           border: "1px solid white",
-          backgroundColor: "#181618"
+          backgroundColor: "#181618",
         }}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
