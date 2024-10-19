@@ -59,7 +59,7 @@ export default function Chats() {
   };
 
   // Websocket connection
-  const WS_URL = `ws://${BASE_URL.split("//")[1]}/organisations/${
+  const WS_URL = `wss://${BASE_URL.split("//")[1]}/organisations/${
     organisation?.id
   }/chats/${openChatId}?token=${tokens?.access}`;
   const { sendJsonMessage, lastJsonMessage } = useWebSocket<WSMessage>(WS_URL, {

@@ -30,7 +30,7 @@ const NotificationProvider = ({ children }: NotificationProviderProps) => {
   const { organisation } = useOrgStore();
   const [badges, setBadges] = useState<Map<string, number>>(new Map());
 
-  const WS_URL = `ws://${BASE_URL.split("//")[1]}/organisations/${
+  const WS_URL = `wss://${BASE_URL.split("//")[1]}/organisations/${
     organisation?.id
   }/chats/notifications?token=${tokens?.access}`;
 

@@ -42,7 +42,7 @@ export default function KanbanView() {
   const [overlayVisible, setOverlayVisible] = useState(false);
 
   // Websocket Url in react state to handle reconnect manually
-  const WS_URL = `ws://${BASE_URL.split("//")[1]}/organisations/${
+  const WS_URL = `wss://${BASE_URL.split("//")[1]}/organisations/${
     organisation?.id
   }/projects/${project?.id}/kanbans/${kanban?.id}?token=${tokens?.access}`;
 
