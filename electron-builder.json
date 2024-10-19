@@ -6,6 +6,7 @@
   },
   "files": ["dist-electron", "dist"],
   "win": {
+    "icon": "public/icon.ico",
     "target": [
       {
         "target": "nsis",
