@@ -33,7 +33,7 @@ const indexHtml = path.join(RENDERER_DIST, "index.html");
 async function createWindow() {
   win = new BrowserWindow({
     title: "Main window",
-    icon: path.join(process.env.VITE_PUBLIC, "icon.ico"),
+    icon: path.join(process.env.VITE_PUBLIC || "", "icon.ico"),
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
