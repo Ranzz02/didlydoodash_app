@@ -5,7 +5,6 @@ import styles from "./whiteboard.module.css";
 import { useParams } from "react-router-dom";
 import useWebSocket from "react-use-websocket";
 import { useWhiteboards } from "@/stores/whiteboards";
-import { Widgets } from "@mui/icons-material";
 
 interface LineData {
   points: number[];
@@ -29,12 +28,12 @@ const Whiteboard: React.FC<WhiteboardProps> = ({ websocketUrl }) => {
   const startPointRef = useRef<{ x: number; y: number } | null>(null);
   const { whiteboardID } = useParams();
   const { whiteboards } = useWhiteboards();
-  const stageRef = useRef<HTMLDivElement>(null);
+  //const stageRef = useRef<HTMLDivElement>(null);
 
   const [stageSize, setStageSize] = useState<{ width: number; height: number }>(
     {
-      width: window.innerWidth,
-      height: window.innerHeight,
+      width: window.innerWidth - 64,
+      height: window.innerHeight - 184,
     }
   );
 

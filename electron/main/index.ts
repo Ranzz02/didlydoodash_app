@@ -44,6 +44,7 @@ async function createWindow() {
       // contextIsolation: false,
     },
     darkTheme: true,
+    autoHideMenuBar: true,
   });
 
   if (VITE_DEV_SERVER_URL) {
