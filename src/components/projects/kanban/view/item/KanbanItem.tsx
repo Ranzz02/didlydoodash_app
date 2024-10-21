@@ -44,178 +44,178 @@ function KanbanItemComponent(props: KanbanItemProps) {
     id: item.id,
   };
 
-  const [{ isDragging }, drag, dragPreview] = useDrag(
-    () => ({
-      type: KanbanDNDTypes.ITEM,
-      item: dragItem,
-      collect: (monitor) => ({
-        isDragging: !!monitor.isDragging(),
-      }),
-    }),
-    [dragItem]
-  );
+	const [{ isDragging }, drag] = useDrag(
+		() => ({
+			type: KanbanDNDTypes.ITEM,
+			item: dragItem,
+			collect: (monitor) => ({
+				isDragging: !!monitor.isDragging(),
+			}),
+		}),
+		[dragItem]
+	);
 
   const dragStyle: CSSProperties = { opacity: isDragging ? 0.5 : 1 };
 
-  return (
-    <>
-      <div
-        ref={dragPreview}
-        className="kanban-item-box"
-        style={{ ...dragStyle, ...style }}
-        onClick={() => setOpen(true)}
-      >
-        <div className="kanban-item-header">
-          <div className="kanban-item-actions">
-            <div ref={drag} className={"kanban-item-handle"}>
-              <img src={`${import.meta.env.BASE_URL}icons/grab.svg`} />
-            </div>
-            <RemoveItem item={item} sendMessage={sendMessage} />
-          </div>
-        </div>
-        <div className="kanban-item-content">
-          <div className="title-desc">
-            <input
-              type="text"
-              value={item.title}
-              placeholder="Title"
-              readOnly
-            />
-            <input
-              className="desc"
-              type="text"
-              value={item.description}
-              placeholder="Description"
-              readOnly
-            />
-          </div>
-          <div className="info-box">
-            {item.priority && item.priority !== KanbanItemPriority.NONE && (
-              <span className={"priority " + item.priority.toLowerCase()}>
-                Priority: <strong>{item.priority}</strong>
-              </span>
-            )}
-            {item.due_date && (
-              <span
-                className={"due-time"}
-                onMouseEnter={() => setShowDueTime(true)}
-                onMouseLeave={() => setShowDueTime(false)}
-              >
-                Due:{" "}
-                <strong
-                  className={
-                    new Date(item.due_date).getTime() <= Date.now()
-                      ? "late"
-                      : ""
-                  }
-                >
-                  {new Date(item.due_date).toLocaleDateString()}
-                </strong>
-                {showDueTime && (
-                  <div className="due-time-left">
-                    Time left: {getTimeLeft(new Date(item.due_date))}
-                  </div>
-                )}
-              </span>
-            )}
-            {item.estimated_time && (
-              <span className="estimated-time">
-                Estimated work hours: {item.estimated_time}h
-              </span>
-            )}
-          </div>
-        </div>
-      </div>
-      <Modal
-        className="edit-kanban-item-modal"
-        component="div"
-        open={open}
-        onClose={() => setOpen(false)}
-      >
-        <div className="edit-kanban-item-container">
-          <h2>Edit Item</h2>
-          <div className="edit-content">
-            <span className="edit-content-subheader">Title & Description</span>
-            <div className="edit-content-row">
-              <label>Title:</label>
-              <input
-                type="text"
-                name="title"
-                maxLength={40}
-                placeholder="Title"
-                value={item.title}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="edit-content-row">
-              <label>Description:</label>
-              <input
-                className="desc"
-                type="text"
-                name="description"
-                placeholder="Description"
-                value={item.description}
-                onChange={handleChange}
-              />
-            </div>
-            <br />
-            <span className="edit-content-subheader">Priority</span>
-            <div className="edit-content-row">
-              <label>Priority</label>
-              <select
-                value={item.priority}
-                name="priority"
-                onChange={handleChange}
-              >
-                {Object.keys(KanbanItemPriority)
-                  .reverse()
-                  .map((key) => (
-                    <option
-                      key={key}
-                      value={
-                        KanbanItemPriority[
-                          key as keyof typeof KanbanItemPriority
-                        ]
-                      }
-                    >
-                      {
-                        KanbanItemPriority[
-                          key as keyof typeof KanbanItemPriority
-                        ]
-                      }
-                    </option>
-                  ))}
-              </select>
-            </div>
-            <br />
-            <span className="edit-content-subheader">
-              Estimated Time & Due Date
-            </span>
-            <div className="edit-content-row">
-              <label>Due Date</label>
-              <input
-                type="datetime-local"
-                placeholder="Due date"
-                name="due_date"
-                value={formatDateTimeLocal(new Date(item.due_date))}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="edit-content-row">
-              <label>Estimated time</label>
-              <input
-                type="number"
-                placeholder="Time in hours (h)"
-                name="estimated_time"
-                value={item.estimated_time}
-                onChange={handleChange}
-              />
-            </div>
-          </div>
-        </div>
-      </Modal>
-    </>
-  );
+	return (
+		<>
+			<div
+				ref={drag}
+				className="kanban-item-box"
+				style={{ ...dragStyle, ...style }}
+				onClick={() => setOpen(true)}
+			>
+				<div className="kanban-item-header">
+					<div className="kanban-item-actions">
+						<div className={"kanban-item-handle"}>
+							<img src="/icons/grab.svg" />
+						</div>
+						<RemoveItem item={item} sendMessage={sendMessage} />
+					</div>
+				</div>
+				<div className="kanban-item-content">
+					<div className="title-desc">
+						<input
+							type="text"
+							value={item.title}
+							placeholder="Title"
+							readOnly
+						/>
+						<input
+							className="desc"
+							type="text"
+							value={item.description}
+							placeholder="Description"
+							readOnly
+						/>
+					</div>
+					<div className="info-box">
+						{item.priority && item.priority !== KanbanItemPriority.NONE && (
+							<span className={"priority " + item.priority.toLowerCase()}>
+								Priority: <strong>{item.priority}</strong>
+							</span>
+						)}
+						{item.due_date && (
+							<span
+								className={"due-time"}
+								onMouseEnter={() => setShowDueTime(true)}
+								onMouseLeave={() => setShowDueTime(false)}
+							>
+								Due:{" "}
+								<strong
+									className={
+										new Date(item.due_date).getTime() <= Date.now()
+											? "late"
+											: ""
+									}
+								>
+									{new Date(item.due_date).toLocaleDateString()}
+								</strong>
+								{showDueTime && (
+									<div className="due-time-left">
+										Time left: {getTimeLeft(new Date(item.due_date))}
+									</div>
+								)}
+							</span>
+						)}
+						{item.estimated_time && (
+							<span className="estimated-time">
+								Estimated work hours: {item.estimated_time}h
+							</span>
+						)}
+					</div>
+				</div>
+			</div>
+			<Modal
+				className="edit-kanban-item-modal"
+				component="div"
+				open={open}
+				onClose={() => setOpen(false)}
+			>
+				<div className="edit-kanban-item-container">
+					<h2>Edit Item</h2>
+					<div className="edit-content">
+						<span className="edit-content-subheader">Title & Description</span>
+						<div className="edit-content-row">
+							<label>Title:</label>
+							<input
+								type="text"
+								name="title"
+								maxLength={40}
+								placeholder="Title"
+								value={item.title}
+								onChange={handleChange}
+							/>
+						</div>
+						<div className="edit-content-row">
+							<label>Description:</label>
+							<input
+								className="desc"
+								type="text"
+								name="description"
+								placeholder="Description"
+								value={item.description}
+								onChange={handleChange}
+							/>
+						</div>
+						<br />
+						<span className="edit-content-subheader">Priority</span>
+						<div className="edit-content-row">
+							<label>Priority</label>
+							<select
+								value={item.priority}
+								name="priority"
+								onChange={handleChange}
+							>
+								{Object.keys(KanbanItemPriority)
+									.reverse()
+									.map((key) => (
+										<option
+											key={key}
+											value={
+												KanbanItemPriority[
+													key as keyof typeof KanbanItemPriority
+												]
+											}
+										>
+											{
+												KanbanItemPriority[
+													key as keyof typeof KanbanItemPriority
+												]
+											}
+										</option>
+									))}
+							</select>
+						</div>
+						<br />
+						<span className="edit-content-subheader">
+							Estimated Time & Due Date
+						</span>
+						<div className="edit-content-row">
+							<label>Due Date</label>
+							<input
+								type="datetime-local"
+								placeholder="Due date"
+								name="due_date"
+								value={formatDateTimeLocal(new Date(item.due_date))}
+								onChange={handleChange}
+							/>
+						</div>
+						<div className="edit-content-row">
+							<label>Estimated time</label>
+							<input
+								type="number"
+								placeholder="Time in hours (h)"
+								name="estimated_time"
+								value={item.estimated_time}
+								onChange={handleChange}
+							/>
+						</div>
+					</div>
+				</div>
+			</Modal>
+		</>
+	);
 }
 
 const formatDateTimeLocal = (date: Date): string => {

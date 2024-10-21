@@ -31,13 +31,13 @@ import { useKanbanArchiveStore } from "@/stores/kanbans/archive";
 import { BASE_URL } from "@/utils/api";
 
 export default function KanbanView() {
-  const { organisation } = useOrgStore();
-  const { project } = useProjectStore();
-  const { kanban, selectKanban, updateKanban } = useKanbanStore();
-  const { addCategory, removeCategory, updateCategory } = useKanbanStore();
-  const { addItem, moveItem, removeItem, updateItem } = useKanbanStore();
-  const { toggleOpen, setArchive } = useKanbanArchiveStore();
-  const { tokens } = useAuthStore();
+	const { organisation } = useOrgStore();
+	const { project } = useProjectStore();
+	const { kanban, selectKanban, updateKanban } = useKanbanStore();
+	const { addCategory, removeCategory, updateCategory } = useKanbanStore();
+	const { addItem, moveItem, removeItem, updateItem } = useKanbanStore();
+	const { toggleOpen, setArchive } = useKanbanArchiveStore();
+	const { tokens, user } = useAuthStore();
 
   const [overlayVisible, setOverlayVisible] = useState(false);
 
@@ -101,75 +101,86 @@ export default function KanbanView() {
           setArchive(lastJsonMessage.payload);
           break;
 
-        // Kanban Category responses
-        case NewKanbanCategory:
-          addCategory(lastJsonMessage.payload.category);
-          break;
-        case RestoreKanbanCategory:
-          addCategory(lastJsonMessage.payload.category);
-          break;
-        case EditKanbanCategory:
-          updateCategory(lastJsonMessage.payload.category);
-          break;
-        case DeleteKanbanCategory:
-          removeCategory(lastJsonMessage.payload.category);
-          break;
-        // Kanban Item responses
-        case NewKanbanItem:
-          addItem(
-            lastJsonMessage.payload.item.categoryId,
-            lastJsonMessage.payload.item
-          );
-          break;
-        case RestoreKanbanItem:
-          addItem(
-            lastJsonMessage.payload.item.categoryId,
-            lastJsonMessage.payload.item
-          );
-          break;
-        case MoveKanbanItem:
-          moveItem(
-            lastJsonMessage.payload.itemId,
-            lastJsonMessage.payload.oldCategoryId,
-            lastJsonMessage.payload.newCategoryId
-          );
-          break;
-        case EditKanbanItem:
-          updateItem(
-            lastJsonMessage.payload.item.categoryId,
-            lastJsonMessage.payload.item.id,
-            lastJsonMessage.payload.item
-          );
-          break;
-        case DeleteKanbanItem:
-          removeItem(
-            lastJsonMessage.payload.item.categoryId,
-            lastJsonMessage.payload.item.id
-          );
-          break;
-        case ErrorKanban:
-          toast.error(lastJsonMessage.payload.message, {
-            position: "top-left",
-          });
-      }
-    } catch (error: any) {
-      toast.error(`Websocket error: ${error.message}`, {
-        position: "top-left",
-      });
-    }
-  }, [
-    lastJsonMessage,
-    selectKanban,
-    removeCategory,
-    addCategory,
-    updateCategory,
-    addItem,
-    moveItem,
-    updateItem,
-    removeItem,
-    updateKanban,
-    setArchive,
-  ]);
+				// Kanban Category responses
+				case NewKanbanCategory:
+					addCategory(lastJsonMessage.payload.category);
+					break;
+				case RestoreKanbanCategory:
+					addCategory(lastJsonMessage.payload.category);
+					break;
+				case EditKanbanCategory:
+					if (
+						!lastJsonMessage.payload.userId ||
+						lastJsonMessage.payload.userId === user?.id
+					)
+						break;
+					updateCategory(lastJsonMessage.payload.category);
+					break;
+				case DeleteKanbanCategory:
+					removeCategory(lastJsonMessage.payload.category);
+					break;
+				// Kanban Item responses
+				case NewKanbanItem:
+					addItem(
+						lastJsonMessage.payload.item.categoryId,
+						lastJsonMessage.payload.item
+					);
+					break;
+				case RestoreKanbanItem:
+					addItem(
+						lastJsonMessage.payload.item.categoryId,
+						lastJsonMessage.payload.item
+					);
+					break;
+				case MoveKanbanItem:
+					moveItem(
+						lastJsonMessage.payload.itemId,
+						lastJsonMessage.payload.oldCategoryId,
+						lastJsonMessage.payload.newCategoryId
+					);
+					break;
+				case EditKanbanItem:
+					if (
+						!lastJsonMessage.payload.userId ||
+						lastJsonMessage.payload.userId === user?.id
+					)
+						break;
+					updateItem(
+						lastJsonMessage.payload.item.categoryId,
+						lastJsonMessage.payload.item.id,
+						lastJsonMessage.payload.item
+					);
+					break;
+				case DeleteKanbanItem:
+					removeItem(
+						lastJsonMessage.payload.item.categoryId,
+						lastJsonMessage.payload.item.id
+					);
+					break;
+				case ErrorKanban:
+					toast.error(lastJsonMessage.payload.message, {
+						position: "top-left",
+					});
+			}
+		} catch (error: any) {
+			toast.error(`Websocket error: ${error.message}`, {
+				position: "top-left",
+			});
+		}
+	}, [
+		lastJsonMessage,
+		selectKanban,
+		removeCategory,
+		addCategory,
+		updateCategory,
+		addItem,
+		moveItem,
+		updateItem,
+		removeItem,
+		updateKanban,
+		setArchive,
+		user?.id,
+	]);
 
   return (
     <div className="kanban-view">
